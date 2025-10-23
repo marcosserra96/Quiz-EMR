@@ -1,0 +1,203 @@
+/* ------------------------------
+   ESTILO GERAL
+--------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+  --color-primary: #3b82f6;      /* Azul */
+  --color-secondary: #ec4899;    /* Rosa */
+  --text-color: #1e293b;         /* Azul escuro suave */
+  --bg-color: #ffffff;
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+}
+
+/* ------------------------------
+   CONTAINER PRINCIPAL
+--------------------------------*/
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 90%;
+  max-width: 1100px;
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+/* ------------------------------
+   SEÇÃO DE ENTRADA
+--------------------------------*/
+.entry-section {
+  flex: 1;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.quiz-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.quiz-subtitle {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.entry-form label {
+  font-weight: 500;
+  color: #333;
+}
+
+.entry-form input {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.entry-form input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.start-btn {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  padding: 12px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s;
+}
+
+.start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* ------------------------------
+   SEÇÃO DE RANKING
+--------------------------------*/
+.ranking-section {
+  flex: 1;
+  padding: 40px 30px;
+  background: rgba(255,255,255,0.7);
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+}
+
+.ranking-section h2 {
+  color: var(--color-secondary);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#rankingTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#rankingTable th {
+  background: var(--color-primary);
+  color: white;
+  text-align: left;
+  padding: 10px;
+  border-radius: 6px 6px 0 0;
+  font-size: 0.95rem;
+}
+
+#rankingTable td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.95rem;
+}
+
+#rankingTable tbody tr:hover {
+  background-color: rgba(59, 130, 246, 0.08);
+}
+
+/* ------------------------------
+   BOTÃO ADMIN
+--------------------------------*/
+.admin-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-btn:hover {
+  transform: rotate(90deg) scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* ------------------------------
+   RESPONSIVIDADE
+--------------------------------*/
+@media (max-width: 850px) {
+  .container {
+    flex-direction: column;
+    width: 95%;
+  }
+
+  .entry-section, .ranking-section {
+    width: 100%;
+  }
+
+  .ranking-section {
+    margin-top: 20px;
+  }
+
+  .quiz-title {
+    text-align: center;
+  }
+
+  .entry-form {
+    width: 100%;
+  }
+}
