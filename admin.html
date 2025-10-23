@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de Administração - Quiz EMR</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script defer type="module" src="assets/admin.js"></script>
+</head>
+<body class="admin-body">
+  <div class="admin-container" id="loginContainer">
+    <h2>🔒 Acesso ao Painel de Administração</h2>
+    <input type="password" id="adminPassword" placeholder="Digite a senha" />
+    <button id="loginBtn" class="start-btn">Entrar</button>
+    <p id="loginMessage" style="color: red; margin-top: 10px;"></p>
+  </div>
+
+  <div class="admin-panel" id="adminPanel" style="display:none;">
+    <header class="admin-header">
+      <h1>⚙️ Painel de Administração - Quiz EMR</h1>
+      <button id="logoutBtn" class="start-btn" style="width:auto;">Sair</button>
+    </header>
+
+    <section class="admin-section">
+      <h2>Configurações do Quiz</h2>
+      <div class="config-grid">
+        <div>
+          <label>Título do Quiz:</label>
+          <input type="text" id="quizTitleInput" placeholder="Quiz EMR" />
+        </div>
+        <div>
+          <label>Tempo por Pergunta (s):</label>
+          <input type="number" id="timeInput" value="20" />
+        </div>
+        <div>
+          <label>Cor 1:</label>
+          <input type="color" id="color1" value="#3b82f6" />
+        </div>
+        <div>
+          <label>Cor 2:</label>
+          <input type="color" id="color2" value="#ec4899" />
+        </div>
+      </div>
+      <button id="saveConfigBtn" class="start-btn">Salvar Configurações</button>
+    </section>
+
+    <section class="admin-section">
+      <h2>Perguntas</h2>
+      <div id="questionsList"></div>
+
+      <h3>Adicionar Nova Pergunta</h3>
+      <input type="text" id="newQuestionText" placeholder="Digite o texto da pergunta" />
+      <div id="newOptionsContainer">
+        <input type="text" class="optionInput" placeholder="Alternativa 1" />
+        <input type="text" class="optionInput" placeholder="Alternativa 2" />
+        <input type="text" class="optionInput" placeholder="Alternativa 3" />
+      </div>
+      <label>Índice da Correta (0, 1, 2...)</label>
+      <input type="number" id="correctIndex" min="0" value="0" />
+      <button id="addQuestionBtn" class="start-btn">Adicionar Pergunta</button>
+    </section>
+
+    <section class="admin-section">
+      <h2>Ranking</h2>
+      <div id="rankingContainer">Carregando...</div>
+      <button id="clearRankingBtn" class="start-btn" style="background:#b91c1c;">Limpar Ranking</button>
+    </section>
+
+    <section class="admin-section">
+      <h2>Alterar Senha do Painel</h2>
+      <input type="password" id="newPassword" placeholder="Nova senha" />
+      <button id="changePasswordBtn" class="start-btn">Alterar Senha</button>
+    </section>
+  </div>
+</body>
+</html>
