@@ -12,7 +12,7 @@ const perguntasRef = ref(db, "perguntas");
 const rankingRef = ref(db, "ranking");
 
 /* ----------------------------------------------
-   Elementos
+   Elementos da página
 ---------------------------------------------- */
 const loginContainer = document.getElementById("loginContainer");
 const adminPanel = document.getElementById("adminPanel");
@@ -40,25 +40,37 @@ const newPasswordInput = document.getElementById("newPassword");
 const changePasswordBtn = document.getElementById("changePasswordBtn");
 
 /* ----------------------------------------------
-   Login do painel
+   Login do painel (corrigido)
 ---------------------------------------------- */
 loginBtn.addEventListener("click", async () => {
   const senhaDigitada = adminPasswordInput.value.trim();
   if (!senhaDigitada) return;
 
-  const snapshot = await get(senhaRef);
-  const senhaAtual = snapshot.exists() ? snapshot.val() : "emr2025";
+  try {
+    const snapshot = await get(senhaRef);
+    // Garante que sempre exista uma senha inicial
+    let senhaAtual = "emr2025";
+    if (snapshot.exists() && snapshot.val()) {
+      senhaAtual = snapshot.val();
+    } else {
+      await set(senhaRef, "emr2025"); // cria a senha padrão
+    }
 
-  if (senhaDigitada === senhaAtual) {
-    localStorage.setItem("adminLogado", "true");
-    loginContainer.style.display = "none";
-    adminPanel.style.display = "block";
-    carregarTudo();
-  } else {
-    loginMessage.textContent = "Senha incorreta.";
+    if (senhaDigitada === senhaAtual) {
+      localStorage.setItem("adminLogado", "true");
+      loginContainer.style.display = "none";
+      adminPanel.style.display = "block";
+      carregarTudo();
+    } else {
+      loginMessage.textContent = "Senha incorreta.";
+    }
+  } catch (error) {
+    console.error("Erro ao verificar senha:", error);
+    loginMessage.textContent = "Erro ao conectar com o Firebase.";
   }
 });
 
+/* Se já estiver logado */
 if (localStorage.getItem("adminLogado") === "true") {
   loginContainer.style.display = "none";
   adminPanel.style.display = "block";
@@ -74,7 +86,7 @@ logoutBtn.addEventListener("click", () => {
 });
 
 /* ----------------------------------------------
-   Carrega todas as informações
+   Carrega tudo após login
 ---------------------------------------------- */
 async function carregarTudo() {
   carregarConfiguracoes();
