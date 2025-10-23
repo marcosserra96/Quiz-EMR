@@ -18,9 +18,11 @@ const firebaseConfig = {
   measurementId: "G-8CTLMNCZJN"
 };
 
+// Inicializa app e banco
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Exporta tudo que os outros módulos precisam
 export {
   db,
   doc, getDoc, setDoc, updateDoc, deleteDoc,
