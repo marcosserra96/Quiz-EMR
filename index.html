@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz EMR</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script defer src="assets/firebase.js"></script>
+  <script defer src="assets/quiz.js"></script>
+</head>
+<body>
+  <!-- Container principal -->
+  <div class="container">
+    <!-- Seção de entrada -->
+    <section class="entry-section">
+      <div class="logo-area">
+        <h1 class="quiz-title">Quiz EMR</h1>
+        <p class="quiz-subtitle">Mostre seus conhecimentos e suba no ranking! 🚀</p>
+      </div>
+
+      <form id="entryForm" class="entry-form">
+        <label for="playerName">Nome completo</label>
+        <input type="text" id="playerName" name="playerName" placeholder="Digite seu nome completo" required />
+        <button type="submit" class="start-btn">Começar</button>
+      </form>
+    </section>
+
+    <!-- Seção de ranking -->
+    <section class="ranking-section">
+      <h2>🏆 Ranking ao Vivo</h2>
+      <table id="rankingTable">
+        <thead>
+          <tr>
+            <th>Posição</th>
+            <th>Nome</th>
+            <th>Pontuação</th>
+            <th>Tempo (s)</th>
+          </tr>
+        </thead>
+        <tbody id="rankingBody">
+          <tr><td colspan="4">Carregando ranking...</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <!-- Botão do painel admin -->
+  <button id="adminButton" class="admin-btn" title="Painel de Administração">⚙️</button>
+
+  <script>
+    // Redireciona para o painel admin
+    document.getElementById('adminButton').addEventListener('click', () => {
+      window.location.href = 'admin.html';
+    });
+
+    // Envio do formulário
+    document.getElementById('entryForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('playerName').value.trim();
+      if (name) {
+        localStorage.setItem('quizPlayer', name);
+        window.location.href = 'quiz.html';
+      }
+    });
+  </script>
+</body>
+</html>
