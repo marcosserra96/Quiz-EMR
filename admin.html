@@ -4,73 +4,94 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painel de Administração - Quiz EMR</title>
-  <link rel="stylesheet" href="assets/styles.css" />
-  <script defer type="module" src="assets/admin.js"></script>
+
+  <link rel="stylesheet" href="assets/admin.css?v=2" />
 </head>
 <body class="admin-body">
-  <div class="admin-container" id="loginContainer">
-    <h2>🔒 Acesso ao Painel de Administração</h2>
-    <input type="password" id="adminPassword" placeholder="Digite a senha" />
-    <button id="loginBtn" class="start-btn">Entrar</button>
-    <p id="loginMessage" style="color: red; margin-top: 10px;"></p>
+
+  <!-- LOGIN -->
+  <div id="loginContainer" class="login-container">
+    <div class="login-card">
+      <h2>⚙️ Painel de Administração</h2>
+      <p>Acesse com sua senha para gerenciar o quiz.</p>
+      <input type="password" id="adminPassword" placeholder="Senha do painel" />
+      <button id="loginBtn" class="btn-dark">Entrar</button>
+      <p id="loginMessage" class="msg-erro"></p>
+    </div>
   </div>
 
-  <div class="admin-panel" id="adminPanel" style="display:none;">
+  <!-- PAINEL -->
+  <div id="adminPanel" class="admin-panel" style="display:none;">
     <header class="admin-header">
-      <h1>⚙️ Painel de Administração - Quiz EMR</h1>
-      <button id="logoutBtn" class="start-btn" style="width:auto;">Sair</button>
+      <h1>⚙️ Painel de Administração – Quiz EMR</h1>
+      <button id="logoutBtn" class="btn-outline">Sair</button>
     </header>
 
-    <section class="admin-section">
-      <h2>Configurações do Quiz</h2>
-      <div class="config-grid">
-        <div>
-          <label>Título do Quiz:</label>
-          <input type="text" id="quizTitleInput" placeholder="Quiz EMR" />
-        </div>
-        <div>
-          <label>Tempo por Pergunta (s):</label>
-          <input type="number" id="timeInput" value="20" />
-        </div>
-        <div>
-          <label>Cor 1:</label>
-          <input type="color" id="color1" value="#3b82f6" />
-        </div>
-        <div>
-          <label>Cor 2:</label>
-          <input type="color" id="color2" value="#ec4899" />
+    <!-- SEÇÃO: CONFIGURAÇÕES -->
+    <section class="card">
+      <h2>🎨 Configurações do Quiz</h2>
+      <div class="form-grid">
+        <label>Título do Quiz:</label>
+        <input type="text" id="quizTitleInput" placeholder="Ex: Quiz de Segurança - EMR" />
+
+        <label>Tempo por Pergunta (segundos):</label>
+        <input type="number" id="timeInput" placeholder="20" />
+
+        <div class="colors">
+          <div>
+            <label>Cor 1:</label>
+            <input type="color" id="color1" />
+          </div>
+          <div>
+            <label>Cor 2:</label>
+            <input type="color" id="color2" />
+          </div>
         </div>
       </div>
-      <button id="saveConfigBtn" class="start-btn">Salvar Configurações</button>
+      <button id="saveConfigBtn" class="btn-dark">💾 Salvar Configurações</button>
     </section>
 
-    <section class="admin-section">
-      <h2>Perguntas</h2>
-      <div id="questionsList"></div>
+    <!-- SEÇÃO: PERGUNTAS -->
+    <section class="card">
+      <h2>🧩 Gerenciar Perguntas</h2>
+      <div class="add-question">
+        <input type="text" id="newQuestionText" placeholder="Digite o texto da pergunta" />
+        <div id="newOptionsContainer" class="options-list">
+          <input type="text" class="optionInput" placeholder="Alternativa 1" />
+          <input type="text" class="optionInput" placeholder="Alternativa 2" />
+        </div>
+        <div class="btn-row">
+          <button id="addOptionBtn" class="btn-outline">+ Adicionar alternativa</button>
+        </div>
 
-      <h3>Adicionar Nova Pergunta</h3>
-      <input type="text" id="newQuestionText" placeholder="Digite o texto da pergunta" />
-      <div id="newOptionsContainer">
-        <input type="text" class="optionInput" placeholder="Alternativa 1" />
-        <input type="text" class="optionInput" placeholder="Alternativa 2" />
-        <input type="text" class="optionInput" placeholder="Alternativa 3" />
+        <label>Índice da correta (0, 1, 2...):</label>
+        <input type="number" id="correctIndex" min="0" value="0" />
+
+        <button id="addQuestionBtn" class="btn-dark">✅ Adicionar Pergunta</button>
       </div>
-      <label>Índice da Correta (0, 1, 2...)</label>
-      <input type="number" id="correctIndex" min="0" value="0" />
-      <button id="addQuestionBtn" class="start-btn">Adicionar Pergunta</button>
+
+      <div id="questionsList" class="questions-list">
+        <p>Carregando perguntas...</p>
+      </div>
     </section>
 
-    <section class="admin-section">
-      <h2>Ranking</h2>
-      <div id="rankingContainer">Carregando...</div>
-      <button id="clearRankingBtn" class="start-btn" style="background:#b91c1c;">Limpar Ranking</button>
+    <!-- SEÇÃO: RANKING -->
+    <section class="card">
+      <h2>🏆 Ranking</h2>
+      <div id="rankingContainer" class="ranking-table-admin">
+        <p>Carregando...</p>
+      </div>
+      <button id="clearRankingBtn" class="btn-danger">🗑️ Limpar Ranking</button>
     </section>
 
-    <section class="admin-section">
-      <h2>Alterar Senha do Painel</h2>
+    <!-- SEÇÃO: SENHA -->
+    <section class="card">
+      <h2>🔐 Alterar Senha do Painel</h2>
       <input type="password" id="newPassword" placeholder="Nova senha" />
-      <button id="changePasswordBtn" class="start-btn">Alterar Senha</button>
+      <button id="changePasswordBtn" class="btn-dark">Alterar Senha</button>
     </section>
   </div>
+
+  <script type="module" src="assets/admin.js?v=2"></script>
 </body>
 </html>
