@@ -1,17 +1,15 @@
-/* ------------------------------
-   ESTILO GERAL
---------------------------------*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 :root {
-  --color-primary: #3b82f6;      /* Azul */
-  --color-secondary: #ec4899;    /* Rosa */
-  --text-color: #1e293b;         /* Azul escuro suave */
-  --bg-color: #ffffff;
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  --color-primary: #0284c7;
+  --color-secondary: #06b6d4;
+  --color-bg: #f6f8fb;
+  --text-color: #0f172a;
+  --card-bg: #ffffff;
+  --shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
+/* RESET */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -20,53 +18,49 @@
 }
 
 body {
-  min-height: 100vh;
-  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: var(--color-bg);
   color: var(--text-color);
-}
-
-/* ------------------------------
-   CONTAINER PRINCIPAL
---------------------------------*/
-.container {
   display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  width: 90%;
-  max-width: 1100px;
-  background: var(--card-bg);
-  box-shadow: var(--shadow);
-  border-radius: 16px;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 0;
 }
 
-/* ------------------------------
-   SEÇÃO DE ENTRADA
---------------------------------*/
+/* CONTAINER PRINCIPAL */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 90%;
+  max-width: 1200px;
+  background-color: transparent;
+  gap: 20px;
+}
+
+/* CARD DE ENTRADA */
 .entry-section {
-  flex: 1;
-  padding: 40px 30px;
+  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+  border-radius: 16px;
+  padding: 50px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.6);
+  color: white;
+  box-shadow: var(--shadow);
 }
 
 .quiz-title {
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  color: var(--color-primary);
-  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .quiz-subtitle {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 40px;
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 30px;
 }
 
 .entry-form {
@@ -77,55 +71,53 @@ body {
 
 .entry-form label {
   font-weight: 500;
-  color: #333;
+  font-size: 0.95rem;
 }
 
 .entry-form input {
   padding: 12px 14px;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
+  border: none;
   outline: none;
-  transition: all 0.3s;
-}
-
-.entry-form input:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  font-size: 1rem;
+  width: 100%;
+  color: #1e293b;
 }
 
 .start-btn {
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  background-color: #0f172a;
   color: white;
-  padding: 12px;
-  font-weight: 600;
   border: none;
   border-radius: 8px;
+  padding: 12px;
+  font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.3s;
+  transition: all 0.2s ease;
 }
 
 .start-btn:hover {
+  background-color: #1e293b;
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-/* ------------------------------
-   SEÇÃO DE RANKING
---------------------------------*/
+/* RANKING */
 .ranking-section {
-  flex: 1;
+  background: var(--card-bg);
+  border-radius: 16px;
   padding: 40px 30px;
-  background: rgba(255,255,255,0.7);
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  overflow-x: auto;
 }
 
 .ranking-section h2 {
-  color: var(--color-secondary);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 20px;
-  text-align: center;
 }
 
 #rankingTable {
@@ -133,71 +125,101 @@ body {
   border-collapse: collapse;
 }
 
-#rankingTable th {
-  background: var(--color-primary);
-  color: white;
+#rankingTable th,
+#rankingTable td {
+  padding: 12px;
   text-align: left;
-  padding: 10px;
-  border-radius: 6px 6px 0 0;
   font-size: 0.95rem;
 }
 
-#rankingTable td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-  font-size: 0.95rem;
+#rankingTable th {
+  color: #475569;
+  font-weight: 600;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+#rankingTable tbody tr {
+  border-bottom: 1px solid #e2e8f0;
+  transition: background 0.2s ease;
 }
 
 #rankingTable tbody tr:hover {
-  background-color: rgba(59, 130, 246, 0.08);
+  background-color: #f1f5f9;
 }
 
-/* ------------------------------
-   BOTÃO ADMIN
---------------------------------*/
+#rankingTable td:first-child {
+  font-weight: 600;
+  width: 50px;
+}
+
+#rankingTable td:nth-child(2) {
+  color: var(--text-color);
+}
+
+#rankingTable td:nth-child(3),
+#rankingTable td:nth-child(4) {
+  color: #0f172a;
+  text-align: right;
+}
+
+/* ADMIN BUTTON */
 .admin-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-  color: white;
+  background: rgba(100, 116, 139, 0.15);
+  color: #475569;
   border: none;
   border-radius: 50%;
-  width: 55px;
-  height: 55px;
-  font-size: 1.6rem;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
   cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .admin-btn:hover {
-  transform: rotate(90deg) scale(1.05);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  background: rgba(100, 116, 139, 0.25);
+  transform: rotate(90deg);
 }
 
-/* ------------------------------
-   RESPONSIVIDADE
---------------------------------*/
+/* RESULTADO FINAL */
+.resultado-container {
+  background: var(--card-bg);
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  max-width: 500px;
+  margin: 100px auto;
+}
+
+.resultado-container h2 {
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+.resultado-container p {
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+/* RESPONSIVIDADE */
 @media (max-width: 850px) {
   .container {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     width: 95%;
   }
 
-  .entry-section, .ranking-section {
-    width: 100%;
+  .entry-section {
+    padding: 30px 25px;
   }
 
   .ranking-section {
-    margin-top: 20px;
+    padding: 30px 20px;
   }
 
-  .quiz-title {
+  .ranking-section h2 {
     text-align: center;
-  }
-
-  .entry-form {
-    width: 100%;
   }
 }
